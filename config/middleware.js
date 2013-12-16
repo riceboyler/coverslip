@@ -1,6 +1,4 @@
 var passport = require('passport')
-    , GitHubStrategy = require('passport-github').Strategy
-    , FacebookStrategy = require('passport-facebook').Strategy
     , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
@@ -47,25 +45,9 @@ module.exports = {
     express: {
         customMiddleware: function (app) {
 
-            passport.use(new GitHubStrategy({
-                    clientID: "YOUR_CLIENT_ID",
-                    clientSecret: "YOUR_CLIENT_SECRET",
-                    callbackURL: "http://localhost:1337/auth/github/callback"
-                },
-                verifyHandler
-            ));
-
-            passport.use(new FacebookStrategy({
-                    clientID: "YOUR_CLIENT_ID",
-                    clientSecret: "YOUR_CLIENT_SECRET",
-                    callbackURL: "http://localhost:1337/auth/facebook/callback"
-                },
-                verifyHandler
-            ));
-
             passport.use(new GoogleStrategy({
-                    clientID: 'YOUR_CLIENT_ID',
-                    clientSecret: 'YOUR_CLIENT_SECRET',
+                    clientID: '618434802898.apps.googleusercontent.com',
+                    clientSecret: '89uKqKbo62aDpzkQKOV0bgXv',
                     callbackURL: 'http://localhost:1337/auth/google/callback'
                 },
                 verifyHandler
