@@ -18,54 +18,8 @@ var AuthController = {
         res.redirect('/');
     },
 
-    'github': function (req, res) {
-        passport.authenticate('github', { failureRedirect: '/login' },
-            function (err, user) {
-                req.logIn(user, function (err) {
-                    if (err) {
-                        console.log(err);
-                        res.view('500');
-                        return;
-                    }
-
-                    res.redirect('/');
-                    return;
-                });
-            })(req, res);
-    },
-
-    'github/callback': function (req, res) {
-        passport.authenticate('github',
-            function (req, res) {
-                res.redirect('/');
-            })(req, res);
-    },
-
-    'facebook': function (req, res) {
-        passport.authenticate('facebook', { failureRedirect: '/login' },
-            function (err, user) {
-                req.logIn(user, function (err) {
-                    if (err) {
-                        console.log(err);
-                        res.view('500');
-                        return;
-                    }
-
-                    res.redirect('/');
-                    return;
-                });
-            })(req, res);
-    },
-
-    'facebook/callback': function (req, res) {
-        passport.authenticate('facebook',
-            function (req, res) {
-                res.redirect('/');
-            })(req, res);
-    },
-
     'google': function (req, res) {
-        passport.authenticate('google', { failureRedirect: '/login', scope:['https://www.googleapis.com/auth/plus.login','https://www.googleapis.com/auth/userinfo.profile'] },
+        passport.authenticate('google', { failureRedirect: '/login', scope:['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.circles.read', 'https://www.googleapis.com/auth/plus.profiles.read'], accessType: 'offline' },
             function (err, user) {
                 req.logIn(user, function (err) {
                     if (err) {
